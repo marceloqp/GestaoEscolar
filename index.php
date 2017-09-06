@@ -5,7 +5,7 @@
         <title>LOJA VIRTUAL LPP</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>    
-    <body style="background-image: url(imagens/2e82027230530639a5b3409c067daba4.png)">
+    <body style="background-image: url(imagens/diploma-e-mortarboard_23-2147504572.jpg);background-size: 100%; background-position: top;">
         <nav class=" navbar-light" style="background-color: #CAE1FF; font-weight: bold;" >
             <div class="container-fluid">
             <div class=" navbar-light navbar-header  ">
@@ -24,10 +24,13 @@
                     <li> <a href="../GestaoEscolar/turma/index_turma.php">Gerenciamento de Turmas</a></li>
                     <li><a href="../GestaoEscolar/movimentacoes/index_movimentacoes.php">Movimentações</a></li>
                     <li><a href="../GestaoEscolar/relatorios/index_relatorios.php">Relatórios</a></li>
+                    <li><a href="../GestaoEscolar/contato.php">Contato</a></li>
                 </ul>
       
     </div>
   </div>
 </nav>
-    </body>    
+        <div></div>   
+    </body>
+    <footer> </footer>    
 </html>
