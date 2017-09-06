@@ -2,7 +2,7 @@
 <html>
 <head>
         <meta charset="utf-8">
-        <title>LOJA VIRTUAL LPP</title>
+        <title>SISTEMA DE GESTÃO ESCOLAR</title>
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>    
     <body style="background-image: url(imagens/diploma-e-mortarboard_23-2147504572.jpg);background-size: 100%; background-position: top;">
