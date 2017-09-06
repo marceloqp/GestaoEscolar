@@ -4,7 +4,7 @@
  */
 define('SGBD', 'mysql');
 define('HOST', 'localhost');
-define('DBNAME', 'sistema');
+define('DBNAME', 'gestaoescolar');
 define('CHARSET', 'utf8');
 define('USER', 'root');
 define('PASSWORD', '');
