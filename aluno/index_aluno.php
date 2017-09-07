@@ -60,10 +60,10 @@ endif;
 		<fieldset>
 
 			<!-- Cabeçalho da Listagem -->
-			<legend><h1>Listagem de Alunos</h1></legend>
+			<legend align="center"><h1>Listagem de Alunos</h1></legend>
 
 			<!-- Formulário de Pesquisa -->
-			<form action="" method="get" id='form-contato' class="form-horizontal col-md-10">
+			<form align="center" action="" method="get" id='form-contato' class="form-horizontal col-md-10">
 				<label class="col-md-2 control-label" for="termo">Pesquisar</label>
 				<div class='col-md-7'>
 			    	<input type="text" class="form-control" id="termo" name="termo" placeholder="Infome o Nome ou RA">
@@ -74,14 +74,14 @@ endif;
 
 			<!-- Link para página de cadastro -->
                         <a href='../aluno/cadastro_aluno.php' class="btn btn-success pull-right">Cadastrar Aluno</a>
-                        <br></br>
+                        
                         
 			<div class='clearfix'></div>
 
 			<?php if(!empty($alunos)):?>
 
 				<!-- Tabela de Clientes -->
-				<table class="table table-striped">
+                                <table class="table table-striped " style="background-color: #d9edf7;">
 					<tr class='active'>
 						<th>RA</th>
 						<th>NOME</th>
@@ -90,15 +90,33 @@ endif;
 						<th>TURMA</th>
 						<th>Ação</th>
 					</tr>
-					<?php foreach($alunos as $aluno):?>
-						<tr>
+					<?php foreach($alunos as $aluno):
+                                               
+						$sql = "SELECT c.nome as nome_curso from tab_cursos c, tab_alunos a WHERE c.id = a.id_curso = :id";
+                                                $stm = $conexao->prepare($sql);
+                                                $stm->bindValue(':id', $aluno->id_curso);
+                                                $stm->execute();
+                                                $curso = $stm->fetch(PDO::FETCH_OBJ);
+                                                
+                                                $sql2 = "SELECT t.nome as nome_turma, t.serie as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
+                                                $stm = $conexao->prepare($sql2);
+                                                $stm->bindValue(':id', $aluno->id_turma);
+                                                $stm->execute();
+                                                $turma = $stm->fetch(PDO::FETCH_OBJ);
+                                                
+                                                
+                                                
+                                                
+                                                
+                                                ?>
+                                                <tr>
 							<td><?=$aluno->id?></td>
 							<td><?=$aluno->nome?></td>
 							<td><?=$aluno->cpf?></td>
-							<td><?=$aluno->id_curso?></td>
-							<td><?=$aluno->id_turma?></td>
+							<td><?=$curso->nome_curso?></td>
+							<td><?=$turma->nome_turma?>, <?=$turma->serie_turma?> , <?=$turma->turno_turma?></td>
 							<td>
-								<a href='editar_cliente.php?id=<?=$aluno->id?>' class="btn btn-primary">Editar</a>
+								<a href='editar_aluno.php?id=<?=$aluno->id?>' class="btn btn-primary">Editar</a>
 								<a href='javascript:void(0)' class="btn btn-danger link_exclusao" rel="<?=$aluno->id?>">Excluir</a>
 							</td>
 						</tr>	
