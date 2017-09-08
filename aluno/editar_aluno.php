@@ -15,7 +15,11 @@ if (!empty($id_aluno) && is_numeric($id_aluno)):
 	$stm->execute();
 	$aluno = $stm->fetch(PDO::FETCH_OBJ);
 
-	
+	$conexao = conexao::getInstance();
+        $sql = "SELECT * from tab_cursos";
+        $stm = $conexao->prepare($sql);
+        $stm->execute();
+        $Cursos = $stm->fetchAll(PDO::FETCH_OBJ);
 
 endif;
 
@@ -51,20 +55,26 @@ endif;
 				      <span class='msg-erro msg-cpf'></span>
 				    </div>
 				    <div class="form-group">
-				      <label for="data_nascimento">Data de Nascimento</label>
-				      <input type="data_nascimento" class="form-control" id="data_nascimento" maxlength="10" value="<?=$data_formatada?>" name="data_nascimento">
-				      <span class='msg-erro msg-data'></span>
-				    </div>
+                                        <label for="senha">Senha</label>
+                                        <input type="password" class="form-control" id="senha" name="senha" value="<?=$aluno->senha?>" maxlength="16" placeholder="Informe a Senha">
+                                         <span class='msg-erro msg-senha'></span>
+                                    </div>
 				    <div class="form-group">
-				      <label for="telefone">Telefone</label>
-				      <input type="telefone" class="form-control" id="telefone" maxlength="12" name="telefone" value="<?=$aluno->telefone?>" placeholder="Informe o Telefone">
-				      <span class='msg-erro msg-telefone'></span>
-				    </div>
+                                        <label for="confirmasenha">Confirma Senha</label>
+                                        <input type="password" class="form-control" id="confirmasenha" name="confirmasenha" value="<?=$aluno->senha?>" maxlength="16" placeholder="Confirme a Senha">
+                                        <span class='msg-erro msg-confirmasenha'></span> 
+                                    </div>
 				    <div class="form-group">
-				      <label for="celular">Celular</label>
-				      <input type="celular" class="form-control" id="celular" maxlength="13" name="celular" value="<?=$aluno->celular?>" placeholder="Informe o Celular">
-				      <span class='msg-erro msg-celular'></span>
-				    </div>
+                                        <label for="curso">Curso</label>
+                                        <select class="form-control" name="curso" id="curso">
+                                            
+                                        <?php foreach($Cursos as $curso):?>
+                                        <option value=<?=$curso->id?>><?=$curso->nome?></option>
+                                        <?php endforeach;?>
+                                        </select>
+                                   <!--  <span class='msg-erro msg-curso'></span> -->
+                        
+			    </div>
 				    
 
 				    <input type="hidden" name="acao" value="editar">

@@ -42,14 +42,14 @@ $Turmas = $stm2->fetchAll(PDO::FETCH_OBJ);
                             
                             <div class="form-group">
 			      <label for="senha">Senha</label>
-			      <input type="senha" class="form-control" id="senha" name="senha" maxlength="16" placeholder="Informe a Senha">
-			      <span class='msg-erro msg-senha'></span>
+                              <input type="password" class="form-control" id="senha" name="senha" maxlength="16" placeholder="Informe a Senha">
+			      <span class='msg-erro msg-senha'></span> 
 			    </div>
                             
                             <div class="form-group">
 			      <label for="confirmasenha">Confirma Senha</label>
-			      <input type="cpf" class="form-control" id="confirmasenha" name="confirmasenha" maxlength="16" placeholder="Confirme a Senha">
-			      <span class='msg-erro msg-confirmasenha'></span>
+                              <input type="password" class="form-control" id="confirmasenha" name="confirmasenha" maxlength="16" placeholder="Confirme a Senha">
+			    <span class='msg-erro msg-confirmasenha'></span>
 			    </div>
                             
 			    <div class="form-group">
@@ -59,19 +59,13 @@ $Turmas = $stm2->fetchAll(PDO::FETCH_OBJ);
                                     <option value=<?=$curso->id?>><?=$curso->nome?></option>
                                 <?php endforeach;?>
                               </select>
-                             <span class='msg-erro msg-curso'></span>
+                           <!--  <span class='msg-erro msg-curso'></span> -->
                         
 			    </div>
-			    <div class="form-group">
-                            <label for="turma">Turma</label>
-			     <select class="form-control" name="turma" id="turma">
-                                <?php foreach ($Turmas as $turma):?>
-                                    <option value=<?=$turma->id?>><?=$turma->nome?> , <?=$turma->serie?> , <?=$turma->turno?></option>
-                                <?php endforeach;?>
-                              </select>
-                             <span class='msg-erro msg-curso'></span>
 			    
-                             <br>
+                            
+			    
+                             
 			    <input type="hidden" name="acao" value="incluir">
 			    <button type="submit" class="btn btn-primary" id='botao'> 
 			      Gravar

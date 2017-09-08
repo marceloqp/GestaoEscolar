@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
 	<title>Sistema de Cadastro de Alunos</title>
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/custom.css">
 </head>
 <body>
 	<div class='container box-mensagem-crud'>
@@ -20,7 +20,7 @@
 		$nome  = (isset($_POST['nome'])) ? $_POST['nome'] : '';
 		$cpf   = (isset($_POST['cpf'])) ? str_replace(array('.','-'), '', $_POST['cpf']): '';
 		$id_curso = (isset($_POST['curso'])) ? $_POST['curso'] : '';
-		$id_turma = (isset($_POST['turma'])) ? $_POST['turma'] : '';
+		
                 $senha = (isset($_POST['senha'])) ? $_POST['senha'] : '';
 
 
@@ -41,11 +41,12 @@
 		    elseif(strlen($cpf) < 11):
 				  $mensagem .= '<li>Formato do CPF inválido.</li>';
 		    endif;
-			if ($mensagem != ''):
+		if ($mensagem != ''):
 				$mensagem = '<ul>' . $mensagem . '</ul>';
 				echo "<div class='alert alert-danger' role='alert'>".$mensagem."</div> ";
 				exit;
 			endif;
+
 		endif;
 
 
@@ -53,14 +54,14 @@
 		// Verifica se foi solicitada a inclusão de dados
 		if ($acao == 'incluir'):
 
-			$sql = 'INSERT INTO tab_alunos (nome, cpf, id_curso, id_turma, senha)
-							   VALUES(:nome,:cpf, :curso, :turma, :senha)';
+			$sql = 'INSERT INTO tab_alunos (nome, cpf, id_curso, senha)
+							   VALUES(:nome,:cpf, :curso, :senha)';
 
 			$stm = $conexao->prepare($sql);
 			$stm->bindValue(':nome', $nome);
 			$stm->bindValue(':cpf', $cpf);
 			$stm->bindValue(':curso', $id_curso);
-			$stm->bindValue(':turma', $id_turma);
+			
 			$stm->bindValue(':senha', $senha);
 			
 			$retorno = $stm->execute();
@@ -78,58 +79,17 @@
 		// Verifica se foi solicitada a edição de dados
 		if ($acao == 'editar'):
 
-			if(isset($_FILES['foto']) && $_FILES['foto']['size'] > 0): 
-
-				// Verifica se a foto é diferente da padrão, se verdadeiro exclui a foto antiga da pasta
-				if ($foto_atual <> 'padrao.jpg'):
-					unlink("fotos/" . $foto_atual);
-				endif;
-
-				$extensoes_aceitas = array('bmp' ,'png', 'svg', 'jpeg', 'jpg');
-			    $extensao = strtolower(end(explode('.', $_FILES['foto']['name'])));
-
-			     // Validamos se a extensão do arquivo é aceita
-			    if (array_search($extensao, $extensoes_aceitas) === false):
-			       echo "<h1>Extensão Inválida!</h1>";
-			       exit;
-			    endif;
- 
-			     // Verifica se o upload foi enviado via POST   
-			     if(is_uploaded_file($_FILES['foto']['tmp_name'])):  
-			             
-			          // Verifica se o diretório de destino existe, senão existir cria o diretório  
-			          if(!file_exists("fotos")):  
-			               mkdir("fotos");  
-			          endif;  
-			  
-			          // Monta o caminho de destino com o nome do arquivo  
-			          $nome_foto = date('dmY') . '_' . $_FILES['foto']['name'];  
-			            
-			          // Essa função move_uploaded_file() copia e verifica se o arquivo enviado foi copiado com sucesso para o destino  
-			          if (!move_uploaded_file($_FILES['foto']['tmp_name'], 'fotos/'.$nome_foto)):  
-			               echo "Houve um erro ao gravar arquivo na pasta de destino!";  
-			          endif;  
-			     endif;
-			else:
-
-			 	$nome_foto = $foto_atual;
-
-			endif;
-
-			$sql = 'UPDATE tab_clientes SET nome=:nome, email=:email, cpf=:cpf, data_nascimento=:data_nascimento, telefone=:telefone, celular=:celular, status=:status, foto=:foto ';
-			$sql .= 'WHERE id = :id';
+			
+			$sql = 'UPDATE tab_alunos SET id=:id, nome=:nome, cpf=:cpf, id_curso=:curso, senha=:senha';
+			$sql .= ' WHERE id = :id';
 
 			$stm = $conexao->prepare($sql);
 			$stm->bindValue(':nome', $nome);
-			$stm->bindValue(':email', $email);
 			$stm->bindValue(':cpf', $cpf);
-			$stm->bindValue(':data_nascimento', $data_ansi);
-			$stm->bindValue(':telefone', $telefone);
-			$stm->bindValue(':celular', $celular);
-			$stm->bindValue(':status', $status);
-			$stm->bindValue(':foto', $nome_foto);
-			$stm->bindValue(':id', $id);
-                        //echo(var_dump($stm));
+			$stm->bindValue(':curso', $id_curso);
+			
+			$stm->bindValue(':senha', $senha);
+                        $stm->bindValue(':id', $id);
 			$retorno = $stm->execute();
 
 			if ($retorno):
@@ -138,7 +98,7 @@
 		    	echo "<div class='alert alert-danger' role='alert'>Erro ao editar registro!</div> ";
 			endif;
 
-			echo "<meta http-equiv=refresh content='3;URL=index_cliente.php'>";
+			echo "<meta http-equiv=refresh content='3;URL=index_aluno.php'>";
 		endif;
 
 
