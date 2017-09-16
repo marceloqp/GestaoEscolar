@@ -24,7 +24,7 @@
                     <li> <a href="../GestaoEscolar/turma/index_turma.php">Gerenciamento de Turmas</a></li>
                     <li><a href="../GestaoEscolar/movimentacoes/index_movimentacoes.php">Movimentações</a></li>
                     <li><a href="../GestaoEscolar/relatorios/index_relatorios.php">Relatórios</a></li>
-                    <li><a href="../GestaoEscolar/contato.php">Contato</a></li>
+                  
                 </ul>
       
     </div>

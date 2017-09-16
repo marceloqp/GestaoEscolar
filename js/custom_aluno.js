@@ -30,12 +30,12 @@ var linkExclusao = document.querySelectorAll(".link_exclusao");
 if (linkExclusao != null) { 
 	for ( var i = 0; i < linkExclusao.length; i++ ) {
 		(function(i){
-			var id_cliente = linkExclusao[i].getAttribute('rel');
+			var id_aluno = linkExclusao[i].getAttribute('rel');
 
 			if (linkExclusao[i].addEventListener){
-		    	linkExclusao[i].addEventListener("click", function(){confirmaExclusao(id_cliente);});
+		    	linkExclusao[i].addEventListener("click", function(){confirmaExclusao(id_aluno);});
 			}else if (linkExclusao[i].attachEvent) { 
-				linkExclusao[i].attachEvent("onclick", function(){confirmaExclusao(id_cliente);});
+				linkExclusao[i].attachEvent("onclick", function(){confirmaExclusao(id_aluno);});
 			}
 		})(i);
 	}

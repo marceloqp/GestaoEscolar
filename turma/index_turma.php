@@ -22,7 +22,7 @@
                     <li> <a href="index_turma.php">Gerenciamento de Turmas</a></li>
                     <li><a href="../movimentacoes/index_movimentacoes.php">Movimentações</a></li>
                     <li><a href="../relatorios/index_relatorios.php">Relatórios</a></li>
-                    <li><a href="../contato.php">Contato</a></li>
+                    
                 </ul>
       
     </div>

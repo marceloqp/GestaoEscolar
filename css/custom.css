@@ -2,3 +2,14 @@ fieldset{margin:1% auto;}
 table{ margin-top: 20px;}	
 .box-mensagem-crud{ margin-top: 10px;}
 .msg-erro{ color: red; }
+.but_aluno {
+    width: 200px;
+    height: 150px;
+    background-image: url(../imagens/icone_aluno.png);
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: groove;
+    text-align-last: end;
+    
+}

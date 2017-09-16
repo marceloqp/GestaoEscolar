@@ -20,9 +20,9 @@
                     <li><a href="../aluno/index_aluno.php">Gerenciamento de Alunos </a></li>
                     <li><a href="../curso/index_curso.php">Gerenciamento de Cursos</a></li>
                     <li> <a href="../turma/index_turma.php">Gerenciamento de Turmas</a></li>
-                    <li><a href="../index_movimentacoes.php">Movimentações</a></li>
+                    <li><a href="index_movimentacoes.php">Movimentações</a></li>
                     <li><a href="../relatorios/index_relatorios.php">Relatórios</a></li>
-                    <li><a href="../contato.php">Contato</a></li>
+                  
                 </ul>
       
     </div>

@@ -1,9 +1,13 @@
+<!DOCTYPE html>
 <head>
         <meta charset="utf-8">
         <title>SISTEMA DE GESTÃO ESCOLAR</title>
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">  
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     </head>    
     <body style="background-image: url(../imagens/diploma-e-mortarboard_23-2147504572.jpg);background-size: 100%; background-position: top;">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="../css/custom.css">
         <nav class=" navbar-light" style="background-color: #CAE1FF; font-weight: bold;" >
             <div class="container-fluid">
             <div class=" navbar-light navbar-header  ">
@@ -22,9 +26,14 @@
                     <li> <a href="../turma/index_turma.php">Gerenciamento de Turmas</a></li>
                     <li><a href="../movimentacoes/index_movimentacoes.php">Movimentações</a></li>
                     <li><a href="index_relatorios.php">Relatórios</a></li>
-                    <li><a href="../contato.php">Contato</a></li>
+                
                 </ul>
       
-    </div>
-  </div>
-</nav>
+            </div>
+            </div>
+        </nav>
+        <br>
+        
+        <button type="button" class="but_aluno">teste</button>
+        
+    </body>

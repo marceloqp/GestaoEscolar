@@ -19,11 +19,7 @@ else:
 	$stm->execute();
 	$alunos = $stm->fetchAll(PDO::FETCH_OBJ);
 endif;
-$sql2 = "SELECT t.nome as nome_turma, t.serie as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
-                                                $stm = $conexao->prepare($sql2);
-                                                $stm->bindValue(':id', 1);
-                                                $stm->execute();
-                                                $turma = $stm->fetch(PDO::FETCH_OBJ);
+
 ?>
 
 
@@ -55,7 +51,7 @@ $sql2 = "SELECT t.nome as nome_turma, t.serie as serie_turma, t.turno as   turno
                     <li> <a href="../turma/index_turma.php">Gerenciamento de Turmas</a></li>
                     <li><a href="../movimentacoes/index_movimentacoes.php">Movimentações</a></li>
                     <li><a href="../relatorios/index_relatorios.php">Relatórios</a></li>
-                    <li><a href="../contato.php">Contato</a></li>
+                   
                 </ul>
       
             </div>
