@@ -33,7 +33,7 @@ foreach($alunos as $aluno):
     $stm->execute();
     $curso = $stm->fetch(PDO::FETCH_OBJ);
                                                
-    $sql2 = "SELECT t.nome as nome_turma, t.serie as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
+    $sql2 = "SELECT t.nome as nome_turma, t.semestre as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
     $stm = $conexao->prepare($sql2);
     $stm->bindValue(':id', $aluno->id_turma);
     $stm->execute();

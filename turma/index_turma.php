@@ -12,7 +12,7 @@ if (empty($termo)):
 else:
 	// Executa uma consulta baseada no termo de pesquisa passado como parâmetro
 	$conexao = conexao::getInstance();
-	$sql = 'SELECT id, nome,curso, serie, turno, qtd_max, qtd_matric FROM tab_turmas WHERE curso LIKE :curso OR id LIKE :id';
+	$sql = 'SELECT id, nome,curso, semestre, turno, qtd_max, qtd_matric FROM tab_turmas WHERE curso LIKE :curso OR id LIKE :id';
 	$stm = $conexao->prepare($sql);
 	$stm->bindValue(':curso', $termo.'%');
         $stm->bindValue(':id', $termo.'%');
@@ -114,7 +114,7 @@ endif;
 							<td><?=$t->id?></td>
 							<td><?=$t->nome?></td>
                                                         <td><?=$t->curso?></td>
-                                                        <td><?=$t->serie?></td>
+                                                        <td><?=$t->semestre?></td>
                                                         <td><?=$t->turno?></td>
                                                         <td><?=$t->qtd_max?></td>
                                                         <td><?=$t->qtd_matric?></td>

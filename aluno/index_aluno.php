@@ -118,11 +118,21 @@ endif;
                                                 $stm->execute();
                                                 $curso = $stm->fetch(PDO::FETCH_OBJ);
                                                
-                                                $sql2 = "SELECT t.nome as nome_turma, t.serie as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
+                                                $sql2 = "SELECT t.nome as nome_turma, t.semestre as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
                                                 $stm = $conexao->prepare($sql2);
                                                 $stm->bindValue(':id', $aluno->id_turma);
                                                 $stm->execute();
                                                 $turma = $stm->fetch(PDO::FETCH_OBJ);
+                                                
+                                                if($turma==NULL):
+                                                $sql3 = "SELECT t.nome as nome_turma, t.semestre as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a";
+                                                $stm = $conexao->prepare($sql3);
+                                                $stm->execute();
+                                                $turma = $stm->fetch(PDO::FETCH_OBJ);
+                                                $turma->nome_turma = "";
+                                                $turma->serie_turma = "";
+                                                $turma->turno_turma = "";
+                                                endif;
                                                 
                                                 ?>
                                                 <tr>

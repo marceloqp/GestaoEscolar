@@ -8,11 +8,11 @@ $id_turma = (isset($_GET['id'])) ? $_GET['id'] : '';
 if (!empty($id_turma) && is_numeric($id_turma)):
 
 	$conexao = conexao::getInstance();
-	$sql = 'SELECT id, nome,curso, serie, turno, qtd_max, qtd_matric FROM tab_turmas WHERE id LIKE :id';
+	$sql = 'SELECT id, nome,curso, semestre, turno, qtd_max, qtd_matric FROM tab_turmas WHERE id LIKE :id';
 	$stm = $conexao->prepare($sql);
 	$stm->bindValue(':id', $id_turma);
 	$stm->execute();
-	$turma = $stm->fetchAll(PDO::FETCH_OBJ);
+	$turma = $stm->fetch(PDO::FETCH_OBJ);
 
 	
 endif;
@@ -39,7 +39,7 @@ endif;
 
 				    <div class="form-group">
 				      <label for="nome">Nome</label>
-				      <input type="text" class="form-control" id="nome" name="nome" value="<?=$curso->nome?>" placeholder="Infome o Nome">
+				      <input type="text" class="form-control" id="nome" name="nome" value="<?=$turma->nome?>" placeholder="Infome o Nome">
 				      <span class='msg-erro msg-nome'></span>
 				    </div>
 
@@ -73,11 +73,11 @@ endif;
 				    
 
 				    <input type="hidden" name="acao" value="editar">
-				    <input type="hidden" name="id" value="<?=$curso->id?>">
+				    <input type="hidden" name="id" value="<?=$turma->id?>">
 				    <button type="submit" class="btn btn-primary" id='botao'> 
 				      Gravar
 				    </button>
-                                    <a href='index_curso.php' class="btn btn-danger">Cancelar</a>
+                                    <a href='index_turma.php' class="btn btn-danger">Cancelar</a>
 			
 			<?php endif; ?>
                                 </form>                
