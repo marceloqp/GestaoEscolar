@@ -76,15 +76,15 @@
 		if ($acao == 'editar'):
 
 			
-			$sql = 'UPDATE tab_alunos SET id=:id, nome=:nome, cpf=:cpf, id_curso=:curso, senha=:senha';
+			$sql = 'UPDATE tab_cursos SET id=:id, nome=:nome, semestre=:semestre, periodo=:periodo';
 			$sql .= ' WHERE id = :id';
 
 			$stm = $conexao->prepare($sql);
 			$stm->bindValue(':nome', $nome);
-			$stm->bindValue(':cpf', $cpf);
-			$stm->bindValue(':curso', $id_curso);
+			$stm->bindValue(':semestre', $semestre);
+			$stm->bindValue(':periodo', $periodo);
 			
-			$stm->bindValue(':senha', $senha);
+			
                         $stm->bindValue(':id', $id);
 			$retorno = $stm->execute();
 
@@ -94,7 +94,7 @@
 		    	echo "<div class='alert alert-danger' role='alert'>Erro ao editar registro!</div> ";
 			endif;
 
-			echo "<meta http-equiv=refresh content='3;URL=index_aluno.php'>";
+			echo "<meta http-equiv=refresh content='3;URL=index_curso.php'>";
 		endif;
 
 
@@ -103,7 +103,7 @@
 
 			
 			// Exclui o registro do banco de dados
-			$sql = 'DELETE FROM tab_alunos WHERE id = :id';
+			$sql = 'DELETE FROM tab_cursos WHERE id = :id';
 			$stm = $conexao->prepare($sql);
 			$stm->bindValue(':id', $id);
 			$retorno = $stm->execute();
@@ -114,7 +114,7 @@
 		    	echo "<div class='alert alert-danger' role='alert'>Erro ao excluir registro!</div> ";
 			endif;
 
-			echo "<meta http-equiv=refresh content='3;URL=index_aluno.php'>";
+			echo "<meta http-equiv=refresh content='3;URL=index_curso.php'>";
 		endif;
 		?>
 

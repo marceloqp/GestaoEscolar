@@ -59,7 +59,8 @@
                             <a href='index_curso.php' class="btn btn-danger">Cancelar</a>
 			</form>
 		</fieldset>
+            <script type="text/javascript" src="../js/custom_curso.js"></script>
 	</div>
-    <script type="text/javascript" src="../js/custom_curso.js"></script>
+    
 </body>
 </html>

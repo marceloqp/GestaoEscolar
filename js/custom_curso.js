@@ -5,6 +5,7 @@ if (form != null && form.addEventListener) {
 } else if (form != null && form.attachEvent) {                  
     form.attachEvent("onsubmit", validaCadastro);
 }
+
 var linkExclusao = document.querySelectorAll(".link_exclusao");
 if (linkExclusao != null) { 
 	for ( var i = 0; i < linkExclusao.length; i++ ) {
@@ -19,6 +20,7 @@ if (linkExclusao != null) {
 		})(i);
 	}
 }
+/* Função para exibir um alert confirmando a exclusão do registro*/
 function confirmaExclusao(id){
 	retorno = confirm("Deseja excluir esse Registro?");
 
