@@ -112,12 +112,12 @@ endif;
 					</tr>
 					<?php foreach($alunos as $aluno):
                                                
-						$sql = "SELECT c.nome as nome_curso from tab_cursos c, tab_alunos a WHERE c.id = a.id_curso = :id";
+						$sql = "SELECT c.nome as nome_curso from tab_cursos c, tab_alunos a WHERE c.id = a.id_curso AND a.id_curso = :id";
                                                 $stm = $conexao->prepare($sql);
                                                 $stm->bindValue(':id', $aluno->id_curso);
                                                 $stm->execute();
                                                 $curso = $stm->fetch(PDO::FETCH_OBJ);
-                                               
+                                             
                                                 $sql2 = "SELECT t.nome as nome_turma, t.semestre as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
                                                 $stm = $conexao->prepare($sql2);
                                                 $stm->bindValue(':id', $aluno->id_turma);
@@ -134,8 +134,11 @@ endif;
                                                 $turma->turno_turma = "";
                                                 endif;
                                                 
+                                               
+                                                
                                                 ?>
                                                 <tr>
+                                                  
 							<td><?=$aluno->id?></td>
 							<td><?=$aluno->nome?></td>
 							<td><?=$aluno->cpf?></td>

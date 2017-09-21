@@ -106,25 +106,33 @@ endif;
 						<th>RA</th>
 						<th>NOME</th>
 						<th>CURSO</th>
-						<th>TURMA</th>
+                                                <th>TURMA</th>
                                                 <th>Notas</th>
                                                 <th>Situação</th>
                                                 <th>Ação</th>
 					</tr>
 					<?php foreach($alunos as $aluno):
                                                
-						$sql = "SELECT c.nome as nome_curso from tab_cursos c, tab_alunos a WHERE c.id = a.id_curso = :id";
+						$sql = "SELECT c.nome as nome_curso from tab_cursos c, tab_alunos a WHERE c.id = a.id_curso AND a.id_curso = :id";
                                                 $stm = $conexao->prepare($sql);
                                                 $stm->bindValue(':id', $aluno->id_curso);
                                                 $stm->execute();
                                                 $curso = $stm->fetch(PDO::FETCH_OBJ);
                                                
-                                                $sql2 = "SELECT t.nome as nome_turma, t.serie as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
+                                                $sql2 = "SELECT t.nome as nome_turma, t.semestre as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a WHERE t.id = a.id_turma = :id";
                                                 $stm = $conexao->prepare($sql2);
                                                 $stm->bindValue(':id', $aluno->id_turma);
                                                 $stm->execute();
                                                 $turma = $stm->fetch(PDO::FETCH_OBJ);
-                                                
+                                                if($turma==NULL):
+                                                $sql3 = "SELECT t.nome as nome_turma, t.semestre as serie_turma, t.turno as   turno_turma from tab_turmas t, tab_alunos a";
+                                                $stm = $conexao->prepare($sql3);
+                                                $stm->execute();
+                                                $turma = $stm->fetch(PDO::FETCH_OBJ);
+                                                $turma->nome_turma = "";
+                                                $turma->serie_turma = "";
+                                                $turma->turno_turma = "";
+                                                endif;
                                                 ?>
                                                 <tr>
 							<td><?=$aluno->id?></td>
@@ -134,7 +142,7 @@ endif;
                                                         <td><?=$aluno->nota?> </td>
                                                         <td></td>
 							<td>
-                                                            <a class="btn btn-primary" href="javascript:abrir('editar_notas.php');" >Lançar Nota</a>
+                                                            <a class="btn btn-primary link_nota" href="editar_notas.php?id=<?=$aluno->id?>">Lançar Nota</a>
 								<a href='javascript:void(0)' class="btn btn-danger link_exclusao" rel="<?=$aluno->id?>">Cancelar Lançamento</a>
 							</td>
 						</tr>	

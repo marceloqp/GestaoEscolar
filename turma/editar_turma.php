@@ -1,6 +1,10 @@
 <?php
 require '../conexao.php';
-
+$conexao = conexao::getInstance();
+$sql = 'SELECT id, nome   FROM tab_cursos';
+$stm = $conexao->prepare($sql);
+$stm->execute();
+$Cursos = $stm->fetchAll(PDO::FETCH_OBJ);
 // Recebe o id do cliente do cliente via GET
 $id_turma = (isset($_GET['id'])) ? $_GET['id'] : '';
 
@@ -34,31 +38,33 @@ endif;
 			<?php if(empty($turma)):?>
 				<h3 class="text-center text-danger">Turma não encontrada!</h3>
 			<?php else: ?>
-				<form action="action_turma.php" method="post" id='form-contato' enctype='multipart/form-data'>
-					
+                        <form action="action_turma.php" method="post" id='form-contato' enctype='multipart/form-data'>	
+			    <div class="form-group">
+			      <label for="nome">Nome</label>
+                              <input type="text" class="form-control" id="nome" value="<?=$turma->nome?>" name="nome" placeholder="Infome o Nome">
+			      <span class='msg-erro msg-nome'></span>
+			    </div>
 
-				    <div class="form-group">
-				      <label for="nome">Nome</label>
-				      <input type="text" class="form-control" id="nome" name="nome" value="<?=$turma->nome?>" placeholder="Infome o Nome">
-				      <span class='msg-erro msg-nome'></span>
-				    </div>
-
-				    <div class="form-group">
-			      <label for="semestre">Quantidade de Semestres</label>
-                              <select class="form-control" name="semestre" id="semestre">
-                                  <option>6 semestres</option>
-                                  <option>8 semestres</option>
-                                  <option>10 semestres</option>
-                                  <option>12 semestres</option>
-                                  
-                                  
+			    <div class="form-group">
+                            <label for="curso">Curso</label>
+			     <select class="form-control" name="curso" id="curso" >
+                                <?php foreach($Cursos as $curso):?>
+                                    <option value=<?=$curso->id?>><?=$curso->nome?></option>
+                                <?php endforeach;?>
                               </select>
-			      
+                           <!--  <span class='msg-erro msg-curso'></span> -->
+                        
 			    </div>
                             
                             <div class="form-group">
-			      <label for="periodo">Período de Aulas </label>
-                              <select class="form-control" name="periodo"  id="periodo">
+			      <label for="senha">Semestre</label>
+                              <input type="number" class="form-control" id="senha"   name="senha" maxlength="2" max="12" min="1" placeholder="Informe o Semestre">
+			      <span class='msg-erro msg-senha'></span> 
+			    </div>
+                            
+                            <div class="form-group">
+			      <label for="periodo">Turno </label>
+                              <select class="form-control" name="periodo" id="periodo">
                                   <option>Matutino</option>
                                   <option>Diurno</option>
                                   <option>Integral</option>
@@ -67,6 +73,11 @@ endif;
                                   
                               </select>
 			     
+			    </div>
+                            <div class="form-group">
+			      <label for="senha">Quantidade Máxima de Alunos</label>
+                              <input type="number" class="form-control" id="senha" name="senha" maxlength="2" max="99" min="1" placeholder="Informe o Semestre">
+			      <span class='msg-erro msg-senha'></span> 
 			    </div>
                         
 			   
@@ -80,7 +91,7 @@ endif;
                                     <a href='index_turma.php' class="btn btn-danger">Cancelar</a>
 			
 			<?php endif; ?>
-                                </form>                
+                </form>                
                           </div>
 		
 
